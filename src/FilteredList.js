@@ -1,88 +1,93 @@
-import React, { Component} from "react";
-import DisplayList from './DisplayList';
-import Nav from 'react-bootstrap/Nav';
-import Button from 'react-bootstrap/Button';
-
+import React, { Component } from "react";
+import DisplayList from "./DisplayList";
+import Nav from "react-bootstrap/Nav";
+import Button from "react-bootstrap/Button";
 
 const sortTypes = {
-	up: {name: 'increasing',fn: (a, b) => a.prepTime - b.prepTime},
-	down: {name: 'decreasing',fn: (a, b) => b.prepTime - a.prepTime}
-	// default: {name: 'sort: none',fn: (a, b) => a}
+  up: { name: "increasing", fn: (a, b) => a.price - b.price },
+  down: { name: "decreasing", fn: (a, b) => b.price - a.price },
+  default: { name: "sort: none", fn: (a, b) => a },
 };
 
-class FilteredList extends Component{
+const FilteredList = (props) => {
+  const { list, onAdd } = props;
 
-constructor() {
-    super();
-    this.state = {
-        type: 'All',
-        prepTime: 0,
-        currentSort: 'up'
-    };
-  }
+  const [type, setType] = React.useState("All");
+  const [currentSort, setCurrentSort] = React.useState("default");
+  const [productList, setProductList] = React.useState(list);
 
-onSelectFilter = event => {
-    this.setState({
-        type: event
-    });
-}
+  const onSelectFilter = (event) => {
+    setType(event);
+  };
 
-matchesFilter = item => {
-    if(this.state.type === 'All') {
-        return true
-    } 
-    else if (this.state.type === item.type) {
-        return true
-    } 
-    else {
-        return false
+  const matchesFilter = (item) => {
+    if (type === "All") {
+      return true;
+    } else if (type === item.type) {
+      return true;
+    } else {
+      return false;
     }
-}
+  };
 
-onSelectSort = () => {
-    const { currentSort } = this.state;
+  const onSelectSort = () => {
     let nextSort;
-
-    if (currentSort === 'down') {
-        nextSort = 'up';
-        this.props.list.sort((a, b) => (a.prepTime > b.prepTime) ? 1 : -1);
+    if (currentSort === "down") {
+      nextSort = "up";
+      setProductList(list.slice().sort((a, b) => (a.price > b.price ? 1 : -1)));
+    } else if (currentSort === "up") {
+      nextSort = "default";
+      setProductList(list);
+    } else if (currentSort === "default") {
+      nextSort = "down";
+      setProductList(list.slice().sort((a, b) => (a.price < b.price ? 1 : -1)));
     }
-    
-    else if (currentSort === 'up') {
-        nextSort = 'down';
-        this.props.list.sort((a, b) => (a.prepTime < b.prepTime) ? 1 : -1);
-    }
-    // else if (currentSort === 'default') {
-    //     nextSort = 'down';
-    // }
 
-    this.setState({currentSort: nextSort});
-    
-}
+    setCurrentSort(nextSort);
+  };
 
+  // adding
+  // removing
 
-// adding
-// removing
+  return (
+    <div>
+      {/* <Navbar variant = 'dark'> */}
+      <Nav variant="pills">
+        <Nav.Item>
+          <Nav.Link eventKey="All" onSelect={onSelectFilter}>
+            All
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="Appetizer" onSelect={onSelectFilter}>
+            Appetizer
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="Main" onSelect={onSelectFilter}>
+            Main
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="Dessert" onSelect={onSelectFilter}>
+            Dessert
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="Drink" onSelect={onSelectFilter}>
+            Drink
+          </Nav.Link>
+        </Nav.Item>
+        <Button onClick={onSelectSort}>
+          Sort by price: {sortTypes[currentSort].name}
+        </Button>
+      </Nav>
 
-render() {
-    const { currentSort } = this.state;
-    return (
-        <div>
-            {/* <Navbar variant = 'dark'> */}
-            <Nav variant="pills">
-                <Nav.Item><Nav.Link eventKey='All' onSelect={this.onSelectFilter}>All</Nav.Link></Nav.Item>
-                <Nav.Item><Nav.Link eventKey='Appetizer' onSelect={this.onSelectFilter}>Appetizer</Nav.Link></Nav.Item>
-                <Nav.Item><Nav.Link eventKey='Main' onSelect={this.onSelectFilter}>Main</Nav.Link></Nav.Item>
-                <Nav.Item><Nav.Link eventKey='Dessert' onSelect={this.onSelectFilter}>Dessert</Nav.Link></Nav.Item>
-                <Nav.Item><Nav.Link eventKey='Drink' onSelect={this.onSelectFilter}>Drink</Nav.Link></Nav.Item>
-                <Button onClick={this.onSelectSort}>Sort by prep time: {sortTypes[currentSort].name}</Button>
-            </Nav>
-            
-            <DisplayList list={this.props.list.filter(this.matchesFilter)}/>
-      </div>
-    );
-  }
-
-}
+      <DisplayList
+        list={productList.filter(matchesFilter)}
+        onAdd={onAdd}
+      />
+    </div>
+  );
+};
 export default FilteredList;
-
