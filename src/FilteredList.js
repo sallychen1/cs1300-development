@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import DisplayList from "./DisplayList";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
@@ -51,33 +51,21 @@ const FilteredList = (props) => {
     <div>
       <Nav variant="pills">
         <Nav.Item>
-          <Nav.Link eventKey="All" onSelect={onSelectFilter}>
-            All
-          </Nav.Link>
+          <Nav.Link eventKey="All" onSelect={onSelectFilter}>All</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="Appetizer" onSelect={onSelectFilter}>
-            Appetizer
-          </Nav.Link>
+          <Nav.Link eventKey="Appetizer" onSelect={onSelectFilter}>Appetizer</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="Main" onSelect={onSelectFilter}>
-            Main
-          </Nav.Link>
+          <Nav.Link eventKey="Main" onSelect={onSelectFilter}>Main</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="Dessert" onSelect={onSelectFilter}>
-            Dessert
-          </Nav.Link>
+          <Nav.Link eventKey="Dessert" onSelect={onSelectFilter}>Dessert</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="Drink" onSelect={onSelectFilter}>
-            Drink
-          </Nav.Link>
+          <Nav.Link eventKey="Drink" onSelect={onSelectFilter}>Drink</Nav.Link>
         </Nav.Item>
-        <Button onClick={onSelectSort}>
-          Sort by price: {sortTypes[currentSort].name}
-        </Button>
+        <Button variant="dark" onClick={onSelectSort}>Sort by price: {sortTypes[currentSort].name}</Button>
       </Nav>
 
       <DisplayList

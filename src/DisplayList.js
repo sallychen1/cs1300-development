@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "./App.css";
@@ -7,22 +7,22 @@ const DisplayList = (props) => {
   const {onAdd, list} = props;
 
 
-
   return (
     <div className="card-wrapper">
       {list.map((item) => (
-        <Card key={item.id}>
-          {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+        <Card key={item.id} style={{ width: '18rem' }}>
+          {/* <Card.Img variant="top" src={`./assets/${item.name}.png`} /> */}
+          <Card.Img variant="top" src={"holder.js/100px180"} />
           <Card.Body>
             <Card.Title>{item.name}</Card.Title>
-            <Card.Text>
-              Type: {item.type}, Price: ${item.price}
-            </Card.Text>
-            <Button variant="primary" onClick={() => onAdd(item)}>Add to cart</Button>
+            <Card.Subtitle className="mb-2 text-muted">{item.type} </Card.Subtitle>
+            <Card.Text>${item.price}</Card.Text>
+            <Button variant="primary" size="sm" onClick={() => onAdd(item)}>Add to cart</Button>
           </Card.Body>
         </Card>
       ))}
     </div>
+
   );
 };
 
