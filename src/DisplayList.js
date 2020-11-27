@@ -6,6 +6,8 @@ import "./App.css";
 const DisplayList = (props) => {
   const {onAdd, list} = props;
 
+
+
   return (
     <div className="card-wrapper">
       {list.map((item) => (
@@ -14,9 +16,9 @@ const DisplayList = (props) => {
           <Card.Body>
             <Card.Title>{item.name}</Card.Title>
             <Card.Text>
-              Type: {item.type}, Price: {item.price}
+              Type: {item.type}, Price: ${item.price}
             </Card.Text>
-            <Button variant="primary" onClick={() => onAdd(item)}>Add</Button>
+            <Button variant="primary" onClick={() => onAdd(item)}>Add to cart</Button>
           </Card.Body>
         </Card>
       ))}

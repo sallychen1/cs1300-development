@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 const sortTypes = {
   up: { name: "increasing", fn: (a, b) => a.price - b.price },
   down: { name: "decreasing", fn: (a, b) => b.price - a.price },
-  default: { name: "sort: none", fn: (a, b) => a },
+  default: { name: "none", fn: (a, b) => a },
 };
 
 const FilteredList = (props) => {
@@ -46,12 +46,9 @@ const FilteredList = (props) => {
     setCurrentSort(nextSort);
   };
 
-  // adding
-  // removing
 
   return (
     <div>
-      {/* <Navbar variant = 'dark'> */}
       <Nav variant="pills">
         <Nav.Item>
           <Nav.Link eventKey="All" onSelect={onSelectFilter}>
