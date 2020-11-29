@@ -11,8 +11,7 @@ const DisplayList = (props) => {
     <div className="card-wrapper">
       {list.map((item) => (
         <Card key={item.id} style={{ width: '18rem' }}>
-          {/* <Card.Img variant="top" src={`./assets/${item.name}.png`} /> */}
-          <Card.Img variant="top" src={"holder.js/100px180"} />
+          <Card.Img variant="top" src = {require('./assets/' + item.name + '.png').default} />
           <Card.Body>
             <Card.Title>{item.name}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">{item.type} </Card.Subtitle>

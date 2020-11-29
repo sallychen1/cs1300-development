@@ -49,7 +49,7 @@ const FilteredList = (props) => {
 
   return (
     <div>
-      <Nav variant="pills">
+      <Nav variant="pills" defaultActiveKey = "All">
         <Nav.Item>
           <Nav.Link eventKey="All" onSelect={onSelectFilter}>All</Nav.Link>
         </Nav.Item>
