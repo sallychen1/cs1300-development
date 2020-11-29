@@ -24,7 +24,7 @@ const Cart = (props) => {
               </div>))) : (<div>No items in cart</div>)}
           <div className="row mt-5 pt-5">
             <div className="col-6">Total</div>
-            <div className="col-2">${totalAmount}</div>
+            <div className="col-4">${totalAmount}</div>
           </div>
         </div>
       </Card>

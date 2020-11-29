@@ -2,9 +2,16 @@
 .card-wrapper{
   padding: 10px;
   margin-top: 50px;
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 .card{
   padding: 10px;
+}
+
+.item-card{
+  width: 12rem;
 }
 
 .card-text{
