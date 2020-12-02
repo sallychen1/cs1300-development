@@ -1,28 +1,43 @@
-
-.card-wrapper{
+.card-wrapper {
   padding: 10px;
-  margin-top: 50px;
+  margin-top: 30px;
   display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-.card{
+.card {
   padding: 10px;
 }
 
-.item-card{
+.item-card {
   width: 12rem;
+  margin-right: 12px;
+  margin-bottom: 12px;
 }
 
-.card-text{
+.card-text {
   font-size: 15px;
 }
 
-.title{
+.title {
   font-weight: bold;
 }
 
 .shopping-cart {
   padding: 10px;
   margin-top: 50px;
+}
+
+.card-body{
+  display: flex;
+  flex-direction: column;
+}
+
+.product-content{
+  flex-grow: 1;
+}
+
+.product-image{
+  height: 12em;
+  object-fit: cover;
 }
