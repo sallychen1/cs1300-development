@@ -2,7 +2,7 @@
 - App.js.js contains all food product data and handles the add and remove logic for the food items in the cart
 - Cart.js models the shopping cart and handles the logic for the total food price 
 - DisplayList.js maps each items as to a displayed card
-- FilteredList.js.js handles the filtering and sorting logic for the food categories
+- FilteredList.js.js handles the filtering and sorting logic for the food categories and food regions
 
 ## How data is passed down through components
 - DisplayList.js maps each product from App.js to a Bootstrap Card for render. In addition, onAdd & list are set as props to keep track of add/removal from the cart as well as sorting/filtering. 
@@ -15,10 +15,10 @@
 
 ## How the user trigger state changes
 
-- Users can filter by type by selecting the desired type represented as nav items, sort by price by selecting the desired order on the rightmost button in the navbar, as well as add/remove individual items to a shopping cart on the right and see the total price of items in the cart.  
+- Users can filter by type and by region by selecting the desired type and region, sort by price by selecting the desired order on the sorting button, as well as add/remove individual items to a shopping cart on the right and see the total price of items in the cart.  
 
-- Filter by type: I kept track of the selected type as a state in FilteredList.js, which changes dynamically depending on the filter selected. The eventKey allows me to set
-this state according to the selected event (filter represented as nav items, in this case)
+- Filter by type and region: I kept track of the selected type and region as states in FilteredList.js, which changes dynamically depending on the filter selected. The eventKey allows me to set
+this state according to the selected event (the filter in this case). It is also passed into the filter functions - onSetFilter/onSelectFilterRegion/matchesFilter/matchesFilterRegion to determine the correct items to display. 
 
 - Sort by price: Again, I kept track of the currentSort as a state in FilteredList.js, which changes dynamically depending on the sort order selected. Inside onSelectSort(), I had a series of if statements comparing the price so that the correct order is returned and so that the sort order changes dynamically. 
 
